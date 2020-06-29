@@ -1,17 +1,44 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+import CATEGORIES from "../data/dummydata";
 
 const CategoriesScreen = (props) => {
-  return (
-    <View>
-      <Button
+  // function to render each item
+  // placed in component to have access to props navigation
+  const renderGridItem = (itemData) => {
+    return (
+      <TouchableOpacity
         onPress={() => props.navigation.navigate("FoodCategory")}
-        title="Go to Food Category"
-      />
-    </View>
+        style={styles.gridItem}
+      >
+        <View>
+          <Text>{itemData.item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  return (
+    <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
   );
 };
 
-const styles = StyleSheet.create({});
+// add property to function - function are also objects in js
+CategoriesScreen.navigationOptions = {
+  headerTitle: "Food Categories",
+};
+
+const styles = StyleSheet.create({
+  gridItem: {
+    flex: 1,
+    margin: 15,
+  },
+});
 
 export default CategoriesScreen;
