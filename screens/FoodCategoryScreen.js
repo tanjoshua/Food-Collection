@@ -12,7 +12,7 @@ const FoodCategoryScreen = (props) => {
   );
 
   return (
-    <View>
+    <View style={styles.screen}>
       <Text>Categories</Text>
     </View>
   );
@@ -34,6 +34,11 @@ FoodCategoryScreen.navigationOptions = (navigationData) => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: "lightgray",
+  },
+});
 
 export default FoodCategoryScreen;

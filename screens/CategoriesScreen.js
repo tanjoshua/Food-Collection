@@ -7,14 +7,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CATEGORIES from "../data/dummydata";
-import Colors from "../constants/Colors";
+
+//import component
+import CategoryCard from "../components/CategoryCard";
 
 const CategoriesScreen = (props) => {
   // function to render each item
   // placed in component to have access to props navigation
   const renderGridItem = (itemData) => {
     return (
-      <TouchableOpacity
+      <CategoryCard
+        title={itemData.item.title}
         onPress={() =>
           props.navigation.navigate({
             routeName: "FoodCategory",
@@ -23,17 +26,17 @@ const CategoriesScreen = (props) => {
             },
           })
         }
-        style={styles.gridItem}
-      >
-        <View>
-          <Text>{itemData.item.title}</Text>
-        </View>
-      </TouchableOpacity>
+      />
     );
   };
 
   return (
-    <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
+    <FlatList
+      data={CATEGORIES}
+      renderItem={renderGridItem}
+      numColumns={2}
+      style={styles.screen}
+    />
   );
 };
 
@@ -46,6 +49,9 @@ const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
     margin: 15,
+  },
+  screen: {
+    backgroundColor: "lightgray",
   },
 });
 
