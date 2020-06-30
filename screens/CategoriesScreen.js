@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CATEGORIES from "../data/dummydata";
+import Colors from "../constants/Colors";
 
 const CategoriesScreen = (props) => {
   // function to render each item
@@ -14,7 +15,14 @@ const CategoriesScreen = (props) => {
   const renderGridItem = (itemData) => {
     return (
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("FoodCategory")}
+        onPress={() =>
+          props.navigation.navigate({
+            routeName: "FoodCategory",
+            params: {
+              categoryId: itemData.item.id, // pass on params to next screen
+            },
+          })
+        }
         style={styles.gridItem}
       >
         <View>
