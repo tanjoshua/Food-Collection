@@ -6,7 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import CATEGORIES from "../data/dummydata";
+import { CATEGORIES } from "../data/dummydata";
 
 //import component
 import CategoryCard from "../components/CategoryCard";
