@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { CATEGORIES, MEALS } from "../data/dummydata";
 
+import MealCard from "../components/MealCard";
+
 const FoodCategoryScreen = (props) => {
   // get category id from Categories screen
   const categoryId = props.navigation.getParam("categoryId");
@@ -15,14 +17,24 @@ const FoodCategoryScreen = (props) => {
   const renderFoodItem = (itemData) => {
     return (
       <View>
-        <Text>{itemData.item.title}</Text>
+        <MealCard
+          title={itemData.item.title}
+          duration={itemData.item.duration}
+          complexity={itemData.item.complexity}
+          affordability={itemData.item.affordability}
+          image={itemData.item.imageUrl}
+        />
       </View>
     );
   };
 
   return (
     <View style={styles.screen}>
-      <FlatList data={foodInCategory} renderItem={renderFoodItem} />
+      <FlatList
+        data={foodInCategory}
+        renderItem={renderFoodItem}
+        style={styles.list}
+      />
     </View>
   );
 };
@@ -47,6 +59,9 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: "lightgray",
+  },
+  list: {
+    width: "100%",
   },
 });
 
