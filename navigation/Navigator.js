@@ -16,6 +16,9 @@ const FoodNavigator = createStackNavigator(
     FoodDetails: FoodDetailsScreen,
   },
   {
+    // can set other stuff, like initial route and mode (eg. modal)
+
+    // setting default navigation options
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: Colors.primaryColor,

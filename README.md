@@ -6,5 +6,6 @@ Personal project to familiarize myself with navigation within a React Native app
 
 1. navigate/push, pop/goBack, popToTop (back to root), replace (new stack - no back)
 2. passing parameters between screens
-3. setting navigation options to edit header styling
+3. setting navigation options to edit header styling - both in a function and as an object
 4. use ImageBackground from react-native to implement background images
+5. use react-navigation-header-buttons to add buttons to headers

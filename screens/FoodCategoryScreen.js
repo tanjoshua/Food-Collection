@@ -23,6 +23,14 @@ const FoodCategoryScreen = (props) => {
           complexity={itemData.item.complexity}
           affordability={itemData.item.affordability}
           image={itemData.item.imageUrl}
+          onPress={() => {
+            props.navigation.navigate({
+              routeName: "FoodDetails",
+              params: {
+                mealId: itemData.item.id,
+              },
+            });
+          }}
         />
       </View>
     );
