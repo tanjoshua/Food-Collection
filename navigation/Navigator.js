@@ -1,14 +1,17 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 
 // importing screens
 import CategoriesScreen from "../screens/CategoriesScreen";
 import FoodCategoryScreen from "../screens/FoodCategoryScreen";
 import FoodDetailsScreen from "../screens/FoodDetailsScreen";
+import FavoritesScreen from "../screens/FavoritesScreen";
 
 // import colors
 import Colors from "../constants/Colors";
 
+// stack navigator - forward backward flow
 const FoodNavigator = createStackNavigator(
   {
     Categories: CategoriesScreen,
@@ -28,4 +31,9 @@ const FoodNavigator = createStackNavigator(
   }
 );
 
-export default createAppContainer(FoodNavigator);
+const TabNavigator = createBottomTabNavigator({
+  Categories: FoodNavigator,
+  Favorites: FavoritesScreen,
+});
+
+export default createAppContainer(TabNavigator);
