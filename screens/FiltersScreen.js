@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, Switch } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
@@ -19,13 +19,37 @@ const FilterSwitch = (props) => {
   );
 };
 
+// screen
 const FiltersScreen = (props) => {
+  // destructer to get navigation
+  // we do this so we can call the useEffect when navigation is changed
+  // prevents infinite loop for useEffect
+  const { navigation } = props;
+
   //state for filters
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
 
+  // save filters function
+  // useCallback only runs if the dependencies specified are changed - prevent infinite loop
+  const saveFilters = useCallback(() => {
+    const appliedFilters = {
+      glutenFree: isGlutenFree,
+      lactoseFree: isLactoseFree,
+      vegan: isVegan,
+      vegatarian: isVegetarian,
+    };
+    console.log(appliedFilters);
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+
+  // set filters with setParams (pass to header)
+  useEffect(() => {
+    navigation.setParams({ save: saveFilters });
+  }, [saveFilters]);
+
+  // return jsx
   return (
     <View>
       <Text style={styles.title}>Available Filters</Text>
@@ -68,6 +92,18 @@ FiltersScreen.navigationOptions = (navData) => {
           onPress={() => {
             navData.navigation.toggleDrawer();
           }}
+        />
+      </HeaderButtons>
+    ),
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-save"
+          onPress={
+            // call save filters function
+            navData.navigation.getParam("save")
+          }
         />
       </HeaderButtons>
     ),

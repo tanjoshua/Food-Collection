@@ -13,3 +13,4 @@ Personal project to familiarize myself with navigation within a React Native app
 7. nest stack navigator in tab navigator for organization of pages
 8. Additional navigation: drawer navigator - use navigationOptions to create the hamburger button
 9. Switch component - change colors using trackColor & thumbColor
+10. Communicate with header on the same page using navigation.setParams
