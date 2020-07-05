@@ -2,7 +2,7 @@
 
 Personal project to familiarize myself with navigation within a React Native application.
 
-# Some notes
+# Some notes (for my own use)
 
 1. navigate/push, pop/goBack, popToTop (back to root), replace (new stack - no back)
 2. passing parameters between screens
@@ -12,3 +12,4 @@ Personal project to familiarize myself with navigation within a React Native app
 6. use react-navigation-tabs to create a navigation tab - tabBarOptions to style navigation bar and navigationOptions in constructor to add icons
 7. nest stack navigator in tab navigator for organization of pages
 8. Additional navigation: drawer navigator - use navigationOptions to create the hamburger button
+9. Switch component - change colors using trackColor & thumbColor

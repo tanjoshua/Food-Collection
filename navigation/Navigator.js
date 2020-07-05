@@ -99,9 +99,16 @@ const FiltersNavigator = createStackNavigator(
 );
 
 // create main drawer navigator
-const MainNavigator = createDrawerNavigator({
-  Food: TabNavigator,
-  Filters: FiltersNavigator,
-});
+const MainNavigator = createDrawerNavigator(
+  {
+    Food: TabNavigator,
+    Filters: FiltersNavigator,
+  },
+  {
+    contentOptions: {
+      activeTintColor: Colors.accentColor,
+    },
+  }
+);
 
 export default createAppContainer(MainNavigator);
