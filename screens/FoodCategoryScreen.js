@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { CATEGORIES, MEALS } from "../data/dummydata";
 
-import MealCard from "../components/MealCard";
+import FoodList from "../components/FoodList";
 
 const FoodCategoryScreen = (props) => {
   // get category id from Categories screen
@@ -13,37 +13,9 @@ const FoodCategoryScreen = (props) => {
     (meal) => meal.categoryIds.indexOf(categoryId) >= 0
   );
 
-  // function to render meal item
-  const renderFoodItem = (itemData) => {
-    return (
-      <View>
-        <MealCard
-          title={itemData.item.title}
-          duration={itemData.item.duration}
-          complexity={itemData.item.complexity}
-          affordability={itemData.item.affordability}
-          image={itemData.item.imageUrl}
-          onPress={() => {
-            props.navigation.navigate({
-              routeName: "FoodDetails",
-              params: {
-                mealId: itemData.item.id,
-              },
-            });
-          }}
-        />
-      </View>
-    );
-  };
-
   return (
-    <View style={styles.screen}>
-      <FlatList
-        data={foodInCategory}
-        renderItem={renderFoodItem}
-        style={styles.list}
-      />
-    </View>
+    // forward data list and navigation prop
+    <FoodList foods={foodInCategory} navigation={props.navigation} />
   );
 };
 
@@ -62,15 +34,5 @@ FoodCategoryScreen.navigationOptions = (navigationData) => {
     headerTitle: selectedCategory.title,
   };
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: "lightgray",
-  },
-  list: {
-    width: "100%",
-  },
-});
 
 export default FoodCategoryScreen;

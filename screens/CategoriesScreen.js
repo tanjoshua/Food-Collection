@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { CATEGORIES } from "../data/dummydata";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from "../components/HeaderButton";
 
 //import component
 import CategoryCard from "../components/CategoryCard";
@@ -41,8 +43,22 @@ const CategoriesScreen = (props) => {
 };
 
 // add property to function - function are also objects in js
-CategoriesScreen.navigationOptions = {
-  headerTitle: "Food Categories",
+CategoriesScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: "Food Categories",
+    // create hamburger menu
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({
