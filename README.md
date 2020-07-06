@@ -1,6 +1,6 @@
 # Food Collection App
 
-Personal project to familiarize myself with navigation within a React Native application.
+Personal project to familiarize myself with navigation & redux within a React Native application.
 
 # Some notes (for my own use)
 
