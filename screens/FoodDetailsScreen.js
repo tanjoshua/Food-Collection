@@ -1,12 +1,13 @@
 import React from "react";
 import { ScrollView, View, Text, StyleSheet, Image } from "react-native";
-import { MEALS } from "../data/dummydata";
+import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 
 const FoodDetailsScreen = (props) => {
   const foodId = props.navigation.getParam("mealId");
-  const selectedFood = MEALS.find((meal) => meal.id === foodId);
+  const availableFood = useSelector((state) => state.food.food);
+  const selectedFood = availableFood.find((meal) => meal.id === foodId);
 
   return (
     <ScrollView>
@@ -34,11 +35,8 @@ const FoodDetailsScreen = (props) => {
 
 // set header title
 FoodDetailsScreen.navigationOptions = (navigationData) => {
-  const mealId = navigationData.navigation.getParam("mealId");
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
-
   return {
-    headerTitle: selectedMeal.title,
+    headerTitle: navigationData.navigation.getParam("mealTitle"),
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item title="Favorite" iconName="ios-star" onPress={() => {}} />

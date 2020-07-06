@@ -18,6 +18,7 @@ const FoodList = (props) => {
               routeName: "FoodDetails",
               params: {
                 mealId: itemData.item.id,
+                mealTitle: itemData.item.title,
               },
             });
           }}

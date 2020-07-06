@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import FoodList from "../components/FoodList";
-import { MEALS } from "../data/dummydata";
+import { useSelector } from "react-redux";
 
 const FavoritesScreen = (props) => {
-  const FavoritedFoods = MEALS.filter((meal) => meal.id === "m1");
+  const favoritedFoods = useSelector((state) => state.food.favoriteFoods);
 
-  return <FoodList navigation={props.navigation} foods={FavoritedFoods} />;
+  return <FoodList navigation={props.navigation} foods={favoritedFoods} />;
 };
 
 const styles = StyleSheet.create({});

@@ -14,3 +14,11 @@ Personal project to familiarize myself with navigation & redux within a React Na
 8. Additional navigation: drawer navigator - use navigationOptions to create the hamburger button
 9. Switch component - change colors using trackColor & thumbColor
 10. Communicate with header on the same page using navigation.setParams
+
+# Redux notes
+
+1. Create a reducer with a state
+2. In App.js, combine reducers using combineReducers
+3. Create a storage using createStore
+4. Wrap jsx with Provider component with store assigned
+5. To retrieve stuff in a component: useSelector
