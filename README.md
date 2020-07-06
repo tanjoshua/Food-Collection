@@ -2,7 +2,7 @@
 
 Personal project to familiarize myself with navigation & redux within a React Native application.
 
-# Some notes (for my own use)
+# Navigation notes (for my own use)
 
 1. navigate/push, pop/goBack, popToTop (back to root), replace (new stack - no back)
 2. passing parameters between screens
