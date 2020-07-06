@@ -1,6 +1,6 @@
 # Food Collection App
 
-Personal project to familiarize myself with navigation & redux within a React Native application.
+Personal project to familiarize myself with navigation & redux within a React Native application. Food catalogue with favorites and browsing filters.
 
 # Navigation notes (for my own use)
 
@@ -17,8 +17,17 @@ Personal project to familiarize myself with navigation & redux within a React Na
 
 # Redux notes
 
+States
+
 1. Create a reducer with a state
 2. In App.js, combine reducers using combineReducers
 3. Create a storage using createStore
 4. Wrap jsx with Provider component with store assigned
 5. To retrieve stuff in a component: useSelector
+
+Actions
+
+6. Create an function that returns an object with the type and any parameters (actions)
+7. In the reducer, create a switch function that checks for the action
+8. In the component, create a handler that uses dispatch to call the action
+9. Send the handler to the navigation using setParams
