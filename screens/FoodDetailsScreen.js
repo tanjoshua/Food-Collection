@@ -8,6 +8,9 @@ import { toggleFavorite } from "../store/actions/foodActions";
 const FoodDetailsScreen = (props) => {
   const foodId = props.navigation.getParam("mealId");
   const availableFood = useSelector((state) => state.food.food);
+  const isFavorite = useSelector((state) =>
+    state.food.favoriteFoods.some((item) => item.id === foodId)
+  );
   const selectedFood = availableFood.find((meal) => meal.id === foodId);
 
   // get dispatch function from redux
@@ -22,6 +25,11 @@ const FoodDetailsScreen = (props) => {
   useEffect(() => {
     props.navigation.setParams({ toggleHandler: toggleFavoriteHandler });
   }, [selectedFood]);
+
+  // send isFavorite to navigation
+  useEffect(() => {
+    props.navigation.setParams({ isFavorite: isFavorite });
+  }, [isFavorite]);
 
   return (
     <ScrollView>
@@ -51,12 +59,18 @@ const FoodDetailsScreen = (props) => {
 FoodDetailsScreen.navigationOptions = (navigationData) => {
   // get toggle favorite function from navigation
   const toggleFavorite = navigationData.navigation.getParam("toggleHandler");
+  // get isFavorite from navigation
+  const isFavorite = navigationData.navigation.getParam("isFavorite");
 
   return {
     headerTitle: navigationData.navigation.getParam("mealTitle"),
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item title="Favorite" iconName="ios-star" onPress={toggleFavorite} />
+        <Item
+          title="Favorite"
+          iconName={isFavorite ? "ios-star" : "ios-star-outline"}
+          onPress={toggleFavorite}
+        />
       </HeaderButtons>
     ),
   };
