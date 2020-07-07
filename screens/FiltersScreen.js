@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, Switch } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useDispatch } from "react-redux";
+import { setFilters } from "../store/actions/foodActions";
 import HeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 
@@ -32,6 +34,9 @@ const FiltersScreen = (props) => {
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
 
+  // dispatch function
+  const dispatch = useDispatch();
+
   // save filters function
   // useCallback only runs if the dependencies specified are changed - prevent infinite loop
   const saveFilters = useCallback(() => {
@@ -41,7 +46,7 @@ const FiltersScreen = (props) => {
       vegan: isVegan,
       vegatarian: isVegetarian,
     };
-    console.log(appliedFilters);
+    dispatch(setFilters(appliedFilters));
   }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
 
   // set filters with setParams (pass to header)

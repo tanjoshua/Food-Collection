@@ -31,6 +31,27 @@ const foodReducer = (state = initialState, action) => {
           ),
         };
       }
+    case "SET_FILTERS":
+      // update filteredFoods
+      const newFilters = action.filters;
+      const filteredFoods = state.food.filter((food) => {
+        if (newFilters.glutenFree && !food.isGlutenFree) {
+          return false;
+        } else if (newFilters.lactoseFree && !food.isLactoseFree) {
+          return false;
+        } else if (newFilters.vegan && !food.isVegan) {
+          return false;
+        } else if (newFilters.vegetarian && !food.isVegetarian) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      // update state
+      return {
+        ...state,
+        filteredFoods: filteredFoods,
+      };
     default:
       return state;
   }
